@@ -8,17 +8,13 @@ title  = "Yehonatan Kazarski | Cyber Research"
   isoCode     = "en"
   dateFormat  = "2 January 2006"
   description = "Deep dives into anything cyber related."
-  copyright   = "© {year} Yehonatan Kazarski"
+  copyright   = "© { year } Yehonatan Kazarski"
 
 [params.author]
   name     = "Yehonatan Kazarski"
   image    = "img/author.jpg"
-  headline = "Security Researcher"
-  bio      = """
-Hello there, I'm Yehonatan Kazarski, but everyone calls me Yoni :)
-A cyber security enthusiast. A computer admirer in general.
-
-You can also visit my [blog](https://tasty-murder.github.io/) where I document from time to time my research and projects."""
+  headline = "Cybersecurity Enthusiast"
+  bio      = "Hey, I'm Yehonatan — but everyone calls me **Yoni** :) A cybersecurity enthusiast and a computer admirer in general. I document my research, CTF writeups, and projects here."
   links = [
     { github   = "https://github.com/Tasty-Murder" },
     { linkedin = "https://www.linkedin.com/in/yehonatan-kazarski-b22434165" },

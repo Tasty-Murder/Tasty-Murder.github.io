@@ -1,33 +1,62 @@
-{{/* GIF hero + profile + recent posts. Place at layouts/partials/home/custom.html */}}
+{{/* Animated void stripes + terminal GIF + profile + recent posts.
+     Place at layouts/partials/home/custom.html */}}
 
-<section class="cyber-hero">
-  <img src="{{ "img/hero.gif" | absURL }}" alt="Terminal animation" class="cyber-hero__gif" aria-hidden="true" />
-  <div class="cyber-hero__overlay">
-    <div class="cyber-hero__prompt">
-      <span class="cyber-hero__path">{{ .Site.Params.hero.promptPath | default "~/research" }}</span>
-      <span class="cyber-hero__cursor">▋</span>
-    </div>
+{{/* ---- Animated purple/black diagonal stripes (fixed, behind everything) ---- */}}
+<div class="void-stripes" aria-hidden="true">
+  <i style="left:4%;top:78%;width:360px;--o:.40;animation-duration:26s;animation-delay:-3s;background:rgb(124,58,237)"></i>
+  <i style="left:14%;top:104%;width:240px;--o:.28;animation-duration:32s;animation-delay:-12s;background:rgb(147,100,255)"></i>
+  <i style="left:22%;top:60%;width:420px;--o:.22;animation-duration:38s;animation-delay:-20s;background:rgb(100,36,210)"></i>
+  <i style="left:30%;top:120%;width:300px;--o:.45;animation-duration:24s;animation-delay:-6s;background:rgb(175,135,255)"></i>
+  <i style="left:40%;top:88%;width:200px;--o:.30;animation-duration:30s;animation-delay:-15s;background:rgb(124,58,237)"></i>
+  <i style="left:48%;top:112%;width:460px;--o:.18;animation-duration:42s;animation-delay:-2s;background:rgb(147,100,255)"></i>
+  <i style="left:56%;top:66%;width:280px;--o:.38;animation-duration:28s;animation-delay:-18s;background:rgb(79,22,178)"></i>
+  <i style="left:64%;top:124%;width:340px;--o:.26;animation-duration:34s;animation-delay:-9s;background:rgb(175,135,255)"></i>
+  <i style="left:72%;top:82%;width:220px;--o:.42;animation-duration:22s;animation-delay:-14s;background:rgb(124,58,237)"></i>
+  <i style="left:80%;top:108%;width:400px;--o:.20;animation-duration:40s;animation-delay:-5s;background:rgb(147,100,255)"></i>
+  <i style="left:88%;top:64%;width:260px;--o:.32;animation-duration:36s;animation-delay:-22s;background:rgb(100,36,210)"></i>
+  <i style="left:10%;top:90%;width:180px;--o:.35;animation-duration:29s;animation-delay:-25s;background:rgb(175,135,255)"></i>
+  <i style="left:36%;top:72%;width:320px;--o:.24;animation-duration:33s;animation-delay:-11s;background:rgb(124,58,237)"></i>
+  <i style="left:60%;top:116%;width:240px;--o:.40;animation-duration:27s;animation-delay:-19s;background:rgb(147,100,255)"></i>
+  <i style="left:76%;top:96%;width:380px;--o:.22;animation-duration:39s;animation-delay:-7s;background:rgb(79,22,178)"></i>
+  <i style="left:92%;top:118%;width:300px;--o:.30;animation-duration:31s;animation-delay:-16s;background:rgb(175,135,255)"></i>
+</div>
+
+{{/* ---- Terminal window framing the hero GIF ---- */}}
+{{ $hero := resources.Get "img/hero.gif" }}
+{{ with $hero }}
+<section class="cyber-terminal">
+  <div class="cyber-terminal__bar">
+    <span class="cyber-terminal__dot cyber-terminal__dot--r"></span>
+    <span class="cyber-terminal__dot cyber-terminal__dot--y"></span>
+    <span class="cyber-terminal__dot cyber-terminal__dot--g"></span>
+    <span class="cyber-terminal__title">{{ $.Site.Params.hero.promptPath | default "~/research" }}</span>
+  </div>
+  <div class="cyber-terminal__screen">
+    <img src="{{ .RelPermalink }}" alt="Terminal animation" class="cyber-terminal__gif" loading="lazy" />
   </div>
 </section>
+{{ end }}
 
+{{/* ---- Profile ---- */}}
 <section class="cyber-profile">
-  {{ with .Site.Params.Author.Image }}
+  {{ with .Site.Params.Author.image }}
   <div class="cyber-profile__avatar">
     {{ $img := resources.Get . }}
     {{ if $img }}
-      <img src="{{ $img.RelPermalink }}" alt="{{ $.Site.Params.Author.Name }}" />
+      {{ $sq := $img.Fill "192x192 Center" }}
+      <img src="{{ $sq.RelPermalink }}" alt="{{ $.Site.Params.Author.name }}" width="96" height="96" />
     {{ else }}
-      <img src="{{ . | absURL }}" alt="{{ $.Site.Params.Author.Name }}" />
+      <img src="{{ . | absURL }}" alt="{{ $.Site.Params.Author.name }}" width="96" height="96" />
     {{ end }}
   </div>
   {{ end }}
 
-  <h1 class="cyber-profile__name">{{ .Site.Params.Author.Name }}</h1>
-  {{ with .Site.Params.Author.Headline }}<p class="cyber-profile__headline">{{ . | markdownify }}</p>{{ end }}
-  {{ with .Site.Params.Author.Bio }}<p class="cyber-profile__bio">{{ . | markdownify }}</p>{{ end }}
+  <h1 class="cyber-profile__name">{{ .Site.Params.Author.name }}</h1>
+  {{ with .Site.Params.Author.headline }}<p class="cyber-profile__headline">{{ . | markdownify }}</p>{{ end }}
+  {{ with .Site.Params.Author.bio }}<div class="cyber-profile__bio">{{ . | markdownify }}</div>{{ end }}
 
   <div class="cyber-profile__links">
-    {{ range .Site.Params.Author.Links }}
+    {{ range .Site.Params.Author.links }}
       {{ range $key, $url := . }}
         <a href="{{ $url }}" target="_blank" rel="noopener noreferrer" class="cyber-link cyber-link--{{ $key }}" aria-label="{{ $key }}">
           {{ partial "icon.html" $key }}
@@ -40,10 +69,6 @@
       <span>RSS</span>
     </a>
   </div>
-
-  {{ with .Content }}
-  <div class="cyber-profile__content prose dark:prose-invert">{{ . }}</div>
-  {{ end }}
 </section>
 
 {{ if .Site.Params.homepage.showRecent }}
@@ -51,22 +76,47 @@
 {{ end }}
 
 <style>
-.cyber-hero { position:relative; width:100%; max-height:70vh; overflow:hidden; border-radius:0.75rem; margin-bottom:2.5rem; }
-.cyber-hero__gif { display:block; width:100%; object-fit:cover; max-height:70vh; }
-.cyber-hero__overlay { position:absolute; inset:0; display:flex; align-items:flex-end; padding:1.5rem 2rem; background:linear-gradient(to top,rgba(0,0,0,0.55) 0%,transparent 60%); }
-.cyber-hero__prompt { font-family:'Courier New',monospace; font-size:clamp(0.85rem,2vw,1.1rem); color:#fff; display:flex; align-items:center; gap:0.25rem; text-shadow:0 0 12px rgba(147,100,255,0.8); }
-.cyber-hero__cursor { animation:blink 1s step-end infinite; }
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-.cyber-profile { display:flex; flex-direction:column; align-items:center; text-align:center; gap:0.75rem; margin-bottom:3rem; padding:0 1rem; }
-.cyber-profile__avatar img { width:96px; height:96px; border-radius:50%; object-fit:cover; border:2px solid rgba(147,100,255,0.4); margin-bottom:0.25rem; }
-.cyber-profile__name { font-size:1.6rem; font-weight:700; margin:0; }
-.cyber-profile__headline { font-size:1rem; opacity:0.65; margin:0; font-style:italic; }
-.cyber-profile__bio { max-width:520px; font-size:0.9rem; opacity:0.55; line-height:1.7; margin:0; }
-.cyber-profile__links { display:flex; flex-wrap:wrap; gap:0.6rem; justify-content:center; margin-top:0.5rem; }
-.cyber-link { display:inline-flex; align-items:center; gap:0.4rem; padding:0.4rem 0.9rem; border-radius:6px; font-size:0.8rem; font-weight:500; text-decoration:none; border:1px solid rgba(124,58,237,0.35); background:rgba(124,58,237,0.08); color:inherit; transition:background 0.2s,border-color 0.2s,transform 0.1s; }
-.cyber-link:hover { background:rgba(124,58,237,0.2); border-color:rgba(147,100,255,0.7); transform:translateY(-1px); text-decoration:none; }
-.cyber-link svg,.cyber-link img { width:15px; height:15px; opacity:0.8; }
-.cyber-link--rss { border-color:rgba(255,140,0,0.35); background:rgba(255,140,0,0.06); }
-.cyber-link--rss:hover { border-color:rgba(255,140,0,0.8); background:rgba(255,140,0,0.15); }
-.cyber-profile__content { max-width:640px; text-align:left; margin-top:0.5rem; font-size:0.95rem; }
+/* ---- Void stripes ---- */
+.void-stripes { position:fixed; inset:0; z-index:-10; overflow:hidden; pointer-events:none; background:#070512; }
+.void-stripes i {
+  position:absolute; display:block; height:18px; border-radius:999px;
+  transform:rotate(-45deg); opacity:0; filter:blur(.4px);
+  will-change:transform,opacity; animation-name:voidDrift; animation-timing-function:linear; animation-iteration-count:infinite;
+}
+@keyframes voidDrift {
+  0%   { transform:translate(0,0) rotate(-45deg); opacity:0; }
+  12%  { opacity:var(--o,.4); }
+  88%  { opacity:var(--o,.4); }
+  100% { transform:translate(-14vw,-96vh) rotate(-45deg); opacity:0; }
+}
+@media (prefers-reduced-motion: reduce) { .void-stripes i { animation:none; opacity:calc(var(--o,.4) * .6); } }
+
+/* ---- Terminal hero ---- */
+.cyber-terminal {
+  max-width:760px; margin:0 auto 2.75rem; border-radius:0.75rem; overflow:hidden;
+  border:1px solid rgba(147,100,255,0.28); background:rgba(10,7,22,0.82);
+  box-shadow:0 0 0 1px rgba(0,0,0,0.4), 0 20px 60px -20px rgba(124,58,237,0.45); backdrop-filter:blur(4px);
+}
+.cyber-terminal__bar { display:flex; align-items:center; gap:0.45rem; padding:0.55rem 0.85rem; background:rgba(18,14,36,0.95); border-bottom:1px solid rgba(147,100,255,0.18); }
+.cyber-terminal__dot { width:11px; height:11px; border-radius:50%; display:inline-block; }
+.cyber-terminal__dot--r { background:#ff5f56; }
+.cyber-terminal__dot--y { background:#ffbd2e; }
+.cyber-terminal__dot--g { background:#27c93f; }
+.cyber-terminal__title { margin-left:0.6rem; font-family:'Courier New',monospace; font-size:0.8rem; color:rgba(205,180,255,0.85); letter-spacing:0.02em; }
+.cyber-terminal__screen { display:flex; justify-content:center; align-items:center; background:#05030e; padding:0.5rem; }
+.cyber-terminal__gif { display:block; max-height:440px; width:auto; max-width:100%; border-radius:0.35rem; }
+
+/* ---- Profile ---- */
+.cyber-profile { position:relative; display:flex; flex-direction:column; align-items:center; text-align:center; gap:0.7rem; margin-bottom:3rem; padding:0 1rem; }
+.cyber-profile__avatar img { width:96px; height:96px; border-radius:50%; object-fit:cover; border:2px solid rgba(147,100,255,0.45); box-shadow:0 0 22px rgba(124,58,237,0.45); }
+.cyber-profile__name { font-size:1.7rem; font-weight:700; margin:0; }
+.cyber-profile__headline { font-size:1rem; opacity:0.7; margin:0; font-style:italic; color:rgb(205,180,255); }
+.cyber-profile__bio { max-width:560px; font-size:0.95rem; opacity:0.72; line-height:1.75; margin:0; }
+.cyber-profile__bio a { color:rgb(175,135,255); text-decoration:underline; }
+.cyber-profile__links { display:flex; flex-wrap:wrap; gap:0.6rem; justify-content:center; margin-top:0.4rem; }
+.cyber-link { display:inline-flex; align-items:center; gap:0.4rem; padding:0.4rem 0.9rem; border-radius:6px; font-size:0.8rem; font-weight:500; text-decoration:none; border:1px solid rgba(124,58,237,0.35); background:rgba(124,58,237,0.10); color:inherit; transition:background 0.2s,border-color 0.2s,transform 0.1s; }
+.cyber-link:hover { background:rgba(124,58,237,0.24); border-color:rgba(147,100,255,0.7); transform:translateY(-1px); text-decoration:none; }
+.cyber-link svg,.cyber-link img { width:15px; height:15px; opacity:0.85; }
+.cyber-link--rss { border-color:rgba(255,140,0,0.35); background:rgba(255,140,0,0.07); }
+.cyber-link--rss:hover { border-color:rgba(255,140,0,0.8); background:rgba(255,140,0,0.16); }
 </style>
