@@ -1,38 +1,44 @@
-/* void — black & purple color scheme for Blowfish
-   Place at: assets/css/schemes/void.css            */
+/* void — purple scheme for Blowfish (works in light AND dark mode)
+   Place at: assets/css/schemes/void.css
+   Blowfish uses one neutral ramp: light mode uses the light end (bg = --color-neutral),
+   dark mode uses the dark end (bg = --color-neutral-800). So the dark end is tuned to a
+   deep purple instead of a harsh black. */
 
 :root {
-  --color-neutral:          255, 255, 255;
-  --color-neutral-50:       245, 243, 255;
-  --color-neutral-100:      220, 215, 235;
-  --color-neutral-200:      170, 162, 195;
-  --color-neutral-300:      120, 112, 148;
-  --color-neutral-400:       80,  72, 105;
-  --color-neutral-500:       50,  44,  75;
-  --color-neutral-600:       30,  25,  52;
-  --color-neutral-700:       18,  14,  36;
-  --color-neutral-800:       10,   7,  22;
-  --color-neutral-900:        5,   3,  14;
+  /* Purple-tinted neutral ramp: light (top) -> dark (bottom) */
+  --color-neutral:          255, 255, 255;  /* light-mode background */
+  --color-neutral-50:       250, 249, 254;
+  --color-neutral-100:      243, 240, 250;
+  --color-neutral-200:      228, 223, 240;
+  --color-neutral-300:      201, 194, 218;
+  --color-neutral-400:      159, 149, 183;
+  --color-neutral-500:      121, 110, 146;
+  --color-neutral-600:       89,  79, 116;
+  --color-neutral-700:       54,  44,  82;
+  --color-neutral-800:       30,  22,  54;   /* dark-mode background (deep purple) */
+  --color-neutral-900:       19,  13,  38;   /* darkest surfaces / light-mode headings */
 
+  /* Primary — purple */
   --color-primary-50:       245, 240, 255;
-  --color-primary-100:      230, 218, 255;
-  --color-primary-200:      205, 180, 255;
-  --color-primary-300:      175, 135, 255;
-  --color-primary-400:      147, 100, 255;
+  --color-primary-100:      233, 221, 255;
+  --color-primary-200:      209, 184, 255;
+  --color-primary-300:      181, 143, 255;
+  --color-primary-400:      152, 104, 255;
   --color-primary-500:      124,  58, 237;
-  --color-primary-600:      100,  36, 210;
-  --color-primary-700:       79,  22, 178;
-  --color-primary-800:       60,  12, 145;
-  --color-primary-900:       43,   5, 110;
+  --color-primary-600:      109,  40, 217;
+  --color-primary-700:       91,  33, 182;
+  --color-primary-800:       76,  29, 149;
+  --color-primary-900:       61,  24, 120;
 
-  --color-secondary-50:     240, 235, 255;
-  --color-secondary-100:    215, 200, 255;
-  --color-secondary-200:    185, 162, 250;
-  --color-secondary-300:    155, 125, 240;
-  --color-secondary-400:    130, 100, 220;
-  --color-secondary-500:    107,  70, 193;
-  --color-secondary-600:     85,  48, 165;
-  --color-secondary-700:     65,  32, 135;
-  --color-secondary-800:     48,  20, 108;
-  --color-secondary-900:     33,  11,  80;
+  /* Secondary — violet */
+  --color-secondary-50:     243, 238, 255;
+  --color-secondary-100:    226, 214, 255;
+  --color-secondary-200:    200, 178, 252;
+  --color-secondary-300:    170, 140, 245;
+  --color-secondary-400:    143, 108, 226;
+  --color-secondary-500:    118,  79, 199;
+  --color-secondary-600:     96,  58, 170;
+  --color-secondary-700:     74,  42, 138;
+  --color-secondary-800:     55,  29, 108;
+  --color-secondary-900:     39,  19,  80;
 }

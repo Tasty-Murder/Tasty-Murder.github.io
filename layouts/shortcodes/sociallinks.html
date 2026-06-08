@@ -1,0 +1,11 @@
+{{/* Social link buttons styled like the landing page. Usage: {{< sociallinks >}} */}}
+<div class="cyber-links" style="margin-top:1.5rem">
+  {{ range site.Params.Author.links }}
+    {{ range $key, $url := . }}
+      <a href="{{ $url }}" target="_blank" rel="noopener noreferrer" class="cyber-link cyber-link--{{ $key }}" aria-label="{{ $key }}">
+        {{ partial "icon.html" $key }}
+        <span>{{ $key | title }}</span>
+      </a>
+    {{ end }}
+  {{ end }}
+</div>

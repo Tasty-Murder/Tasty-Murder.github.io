@@ -6,7 +6,8 @@
     "shellcode", "syscall", "vtable", "ASLR", "PIE",
     "pwnable", "ROP", "GOT", "PLT", "seccomp",
     "brainfuck", "useafter", "overwrite", "hardcoded",
-    "blowfish", "tailwindcss", "hugo"
+    "blowfish", "tailwindcss", "hugo",
+    "Yehonatan", "Kazarski", "Yoni", "writeups", "cybersecurity"
   ],
   "ignorePaths": ["themes/**", "public/**", "resources/**", "*.lock"],
   "ignoreRegExpList": [

@@ -9,17 +9,6 @@
   weight  = 20
 
 [[main]]
-  name    = "Tags"
-  pageRef = "tags"
-  weight  = 30
-
-[[main]]
   name    = "About"
   pageRef = "about"
-  weight  = 40
-
-[[main]]
-  pre    = "github"
-  name   = "GitHub"
-  url    = "https://github.com/Tasty-Murder"
-  weight = 50
+  weight  = 30

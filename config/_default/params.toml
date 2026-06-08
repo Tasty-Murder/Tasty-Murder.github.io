@@ -30,7 +30,7 @@ enableCodeCopy       = true
   showPagination          = true
   showHeadingAnchors      = true
   externalLinkForceNewTab = true
-  sharingLinks            = ["twitter", "linkedin", "reddit"]
+  sharingLinks            = []
 
 [list]
   showSummary = true
