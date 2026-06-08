@@ -1,0 +1,17 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "dictionaries": ["en_US", "software-terms", "cyber-security-terms"],
+  "words": [
+    "shellcode", "syscall", "vtable", "ASLR", "PIE",
+    "pwnable", "ROP", "GOT", "PLT", "seccomp",
+    "brainfuck", "useafter", "overwrite", "hardcoded",
+    "blowfish", "tailwindcss", "hugo"
+  ],
+  "ignorePaths": ["themes/**", "public/**", "resources/**", "*.lock"],
+  "ignoreRegExpList": [
+    "/^```[\\s\\S]*?^```/gm",
+    "\\b0x[0-9a-fA-F]+\\b",
+    "\\b[A-Z0-9_]{3,}\\b"
+  ]
+}

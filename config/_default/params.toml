@@ -1,0 +1,51 @@
+colorScheme          = "void"
+defaultAppearance    = "dark"
+autoSwitchAppearance = false
+enableSearch         = true
+enableCodeCopy       = true
+
+[homepage]
+  layout              = "custom"
+  showRecent          = true
+  showRecentItems     = 6
+  showMoreLink        = true
+  showMoreLinkDest    = "/posts"
+  cardView            = true
+  cardViewScreenWidth = false
+
+[hero]
+  promptPath = "~/research"
+
+[article]
+  showDate                = true
+  showDateUpdated         = true
+  showAuthor              = true
+  showHero                = true
+  heroStyle               = "big"
+  showBreadcrumbs         = true
+  showReadingTime         = true
+  showWordCount           = true
+  showTableOfContents     = true
+  showTaxonomies          = true
+  showPagination          = true
+  showHeadingAnchors      = true
+  externalLinkForceNewTab = true
+  sharingLinks            = ["twitter", "linkedin", "reddit"]
+
+[list]
+  showSummary = true
+  showCards   = true
+  cardView    = true
+  groupByYear = true
+
+[sitemap]
+  excludedKinds = ["taxonomy", "term"]
+
+[header]
+  layout = "fixed"
+
+[footer]
+  showCopyright          = true
+  showThemeAttribution   = true
+  showAppearanceSwitcher = true
+  showScrollToTop        = true

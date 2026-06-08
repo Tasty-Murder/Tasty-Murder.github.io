@@ -1,0 +1,26 @@
+locale = "en-US"
+label  = "English"
+weight = 1
+title  = "Yehonatan Kazarski | Cyber Research"
+
+[params]
+  displayName = "EN"
+  isoCode     = "en"
+  dateFormat  = "2 January 2006"
+  description = "Deep dives into anything cyber related."
+  copyright   = "© {year} Yehonatan Kazarski"
+
+[params.author]
+  name     = "Yehonatan Kazarski"
+  image    = "img/author.jpg"
+  headline = "Security Researcher"
+  bio      = """
+Hello there, I'm Yehonatan Kazarski, but everyone calls me Yoni :)
+A cyber security enthusiast. A computer admirer in general.
+
+You can also visit my [blog](https://tasty-murder.github.io/) where I document from time to time my research and projects."""
+  links = [
+    { github   = "https://github.com/Tasty-Murder" },
+    { linkedin = "https://www.linkedin.com/in/yehonatan-kazarski-b22434165" },
+    { twitter  = "https://twitter.com/YKazarski" }
+  ]

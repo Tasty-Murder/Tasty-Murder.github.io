@@ -1,0 +1,25 @@
+[[main]]
+  name    = "Research"
+  pageRef = "posts"
+  weight  = 10
+
+[[main]]
+  name    = "Projects"
+  pageRef = "projects"
+  weight  = 20
+
+[[main]]
+  name    = "Tags"
+  pageRef = "tags"
+  weight  = 30
+
+[[main]]
+  name    = "About"
+  pageRef = "about"
+  weight  = 40
+
+[[main]]
+  pre    = "github"
+  name   = "GitHub"
+  url    = "https://github.com/Tasty-Murder"
+  weight = 50

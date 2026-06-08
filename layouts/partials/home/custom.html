@@ -1,0 +1,72 @@
+{{/* GIF hero + profile + recent posts. Place at layouts/partials/home/custom.html */}}
+
+<section class="cyber-hero">
+  <img src="{{ "img/hero.gif" | absURL }}" alt="Terminal animation" class="cyber-hero__gif" aria-hidden="true" />
+  <div class="cyber-hero__overlay">
+    <div class="cyber-hero__prompt">
+      <span class="cyber-hero__path">{{ .Site.Params.hero.promptPath | default "~/research" }}</span>
+      <span class="cyber-hero__cursor">▋</span>
+    </div>
+  </div>
+</section>
+
+<section class="cyber-profile">
+  {{ with .Site.Params.Author.Image }}
+  <div class="cyber-profile__avatar">
+    {{ $img := resources.Get . }}
+    {{ if $img }}
+      <img src="{{ $img.RelPermalink }}" alt="{{ $.Site.Params.Author.Name }}" />
+    {{ else }}
+      <img src="{{ . | absURL }}" alt="{{ $.Site.Params.Author.Name }}" />
+    {{ end }}
+  </div>
+  {{ end }}
+
+  <h1 class="cyber-profile__name">{{ .Site.Params.Author.Name }}</h1>
+  {{ with .Site.Params.Author.Headline }}<p class="cyber-profile__headline">{{ . | markdownify }}</p>{{ end }}
+  {{ with .Site.Params.Author.Bio }}<p class="cyber-profile__bio">{{ . | markdownify }}</p>{{ end }}
+
+  <div class="cyber-profile__links">
+    {{ range .Site.Params.Author.Links }}
+      {{ range $key, $url := . }}
+        <a href="{{ $url }}" target="_blank" rel="noopener noreferrer" class="cyber-link cyber-link--{{ $key }}" aria-label="{{ $key }}">
+          {{ partial "icon.html" $key }}
+          <span>{{ $key | title }}</span>
+        </a>
+      {{ end }}
+    {{ end }}
+    <a href="{{ "index.xml" | absURL }}" class="cyber-link cyber-link--rss" aria-label="RSS Feed">
+      {{ partial "icon.html" "rss" }}
+      <span>RSS</span>
+    </a>
+  </div>
+
+  {{ with .Content }}
+  <div class="cyber-profile__content prose dark:prose-invert">{{ . }}</div>
+  {{ end }}
+</section>
+
+{{ if .Site.Params.homepage.showRecent }}
+  {{ partial "recent-articles/main.html" . }}
+{{ end }}
+
+<style>
+.cyber-hero { position:relative; width:100%; max-height:70vh; overflow:hidden; border-radius:0.75rem; margin-bottom:2.5rem; }
+.cyber-hero__gif { display:block; width:100%; object-fit:cover; max-height:70vh; }
+.cyber-hero__overlay { position:absolute; inset:0; display:flex; align-items:flex-end; padding:1.5rem 2rem; background:linear-gradient(to top,rgba(0,0,0,0.55) 0%,transparent 60%); }
+.cyber-hero__prompt { font-family:'Courier New',monospace; font-size:clamp(0.85rem,2vw,1.1rem); color:#fff; display:flex; align-items:center; gap:0.25rem; text-shadow:0 0 12px rgba(147,100,255,0.8); }
+.cyber-hero__cursor { animation:blink 1s step-end infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+.cyber-profile { display:flex; flex-direction:column; align-items:center; text-align:center; gap:0.75rem; margin-bottom:3rem; padding:0 1rem; }
+.cyber-profile__avatar img { width:96px; height:96px; border-radius:50%; object-fit:cover; border:2px solid rgba(147,100,255,0.4); margin-bottom:0.25rem; }
+.cyber-profile__name { font-size:1.6rem; font-weight:700; margin:0; }
+.cyber-profile__headline { font-size:1rem; opacity:0.65; margin:0; font-style:italic; }
+.cyber-profile__bio { max-width:520px; font-size:0.9rem; opacity:0.55; line-height:1.7; margin:0; }
+.cyber-profile__links { display:flex; flex-wrap:wrap; gap:0.6rem; justify-content:center; margin-top:0.5rem; }
+.cyber-link { display:inline-flex; align-items:center; gap:0.4rem; padding:0.4rem 0.9rem; border-radius:6px; font-size:0.8rem; font-weight:500; text-decoration:none; border:1px solid rgba(124,58,237,0.35); background:rgba(124,58,237,0.08); color:inherit; transition:background 0.2s,border-color 0.2s,transform 0.1s; }
+.cyber-link:hover { background:rgba(124,58,237,0.2); border-color:rgba(147,100,255,0.7); transform:translateY(-1px); text-decoration:none; }
+.cyber-link svg,.cyber-link img { width:15px; height:15px; opacity:0.8; }
+.cyber-link--rss { border-color:rgba(255,140,0,0.35); background:rgba(255,140,0,0.06); }
+.cyber-link--rss:hover { border-color:rgba(255,140,0,0.8); background:rgba(255,140,0,0.15); }
+.cyber-profile__content { max-width:640px; text-align:left; margin-top:0.5rem; font-size:0.95rem; }
+</style>

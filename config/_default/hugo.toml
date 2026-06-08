@@ -1,0 +1,26 @@
+theme                  = "blowfish"
+baseURL                = "https://tasty-murder.github.io/"
+defaultContentLanguage = "en"
+enableRobotsTXT        = true
+summaryLength          = 0
+
+[pagination]
+  pagerSize = 10
+
+[outputs]
+  home    = ["HTML", "RSS", "JSON"]
+  section = ["HTML", "RSS"]
+  page    = ["HTML"]
+
+[services]
+  [services.rss]
+    limit = 20
+
+[permalinks]
+  posts    = "/posts/:slug/"
+  projects = "/projects/:slug/"
+
+[taxonomies]
+  tag      = "tags"
+  category = "categories"
+  series   = "series"
