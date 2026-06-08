@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tasty-murder.github.io/sitemap.xml
