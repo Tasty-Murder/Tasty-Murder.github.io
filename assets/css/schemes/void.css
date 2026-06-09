@@ -42,3 +42,12 @@
   --color-secondary-800:     55,  29, 108;
   --color-secondary-900:     39,  19,  80;
 }
+
+/* Dark mode override: near-black background instead of light purple.
+   Only the dark end of the neutral ramp; purple accents unchanged. */
+.dark {
+  --color-neutral-600:       42,  37,  58;   /* borders, scrollbars */
+  --color-neutral-700:       22,  19,  33;   /* cards / surfaces */
+  --color-neutral-800:       12,  10,  20;   /* page background */
+  --color-neutral-900:        7,   6,  13;   /* deepest surfaces */
+}
