@@ -12,6 +12,12 @@ summaryLength          = 0
   section = ["HTML", "RSS"]
   page    = ["HTML"]
 
+# Serve the feed at /feed.xml (Hugo's default is /index.xml). Only baseName is
+# overridden; Hugo merges the rest from the built-in RSS format defaults.
+[outputFormats]
+  [outputFormats.rss]
+    baseName = "feed"
+
 [services]
   [services.rss]
     limit = 20

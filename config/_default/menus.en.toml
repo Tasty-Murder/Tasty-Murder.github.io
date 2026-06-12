@@ -12,3 +12,9 @@
   name    = "About"
   pageRef = "about"
   weight  = 30
+
+[[main]]
+  name    = "RSS"
+  pre     = "rss"
+  url     = "/feed.xml"
+  weight  = 40
