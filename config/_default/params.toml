@@ -3,13 +3,14 @@ defaultAppearance    = "dark"
 autoSwitchAppearance = false
 enableSearch         = true
 enableCodeCopy       = true
+mainSections         = ["research"]
 
 [homepage]
   layout              = "custom"
   showRecent          = true
   showRecentItems     = 6
   showMoreLink        = true
-  showMoreLinkDest    = "/posts"
+  showMoreLinkDest    = "/research"
   cardView            = true
   cardViewScreenWidth = false
 

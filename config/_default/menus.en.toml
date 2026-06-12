@@ -1,6 +1,6 @@
 [[main]]
   name    = "Research"
-  pageRef = "posts"
+  pageRef = "research"
   weight  = 10
 
 [[main]]

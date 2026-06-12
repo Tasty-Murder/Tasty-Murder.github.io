@@ -17,7 +17,7 @@ summaryLength          = 0
     limit = 20
 
 [permalinks]
-  posts    = "/posts/:slug/"
+  research = "/research/:slug/"
   projects = "/projects/:slug/"
 
 [taxonomies]
