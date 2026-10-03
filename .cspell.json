@@ -7,7 +7,8 @@
     "pwnable", "ROP", "GOT", "PLT", "seccomp",
     "brainfuck", "useafter", "overwrite", "hardcoded",
     "blowfish", "tailwindcss", "hugo",
-    "Yehonatan", "Kazarski", "Yoni", "writeups", "cybersecurity"
+    "Yehonatan", "Kazarski", "Yoni", "writeups", "cybersecurity",
+    "regshot", "Regshot", "mkdocs"
   ],
   "ignorePaths": ["themes/**", "public/**", "resources/**", "*.lock"],
   "ignoreRegExpList": [

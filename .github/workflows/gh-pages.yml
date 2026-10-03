@@ -2,6 +2,12 @@ name: GitHub Pages
 on:
   push:
     branches: [main]
+  # Sent by a project repo's docs workflow when its docs change (see
+  # scripts/build-project-docs.sh), so /projects/<name>/ is rebuilt without
+  # a commit here.
+  repository_dispatch:
+    types: [project-docs-updated]
+  workflow_dispatch:
 permissions:
   contents: write
 jobs:
@@ -18,7 +24,16 @@ jobs:
         with:
           hugo-version: "latest"
           extended: true
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.x"
       - run: hugo --minify
+      # Builds each project's MkDocs site into public/projects/<name>/. Runs
+      # after hugo so the project card in content/projects/ (which only links
+      # here, see `build.render` there) never collides with the docs.
+      - run: scripts/build-project-docs.sh
+        env:
+          PROJECTS_TOKEN: ${{ secrets.PROJECTS_TOKEN }}
       - uses: peaceiris/actions-gh-pages@v4
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
