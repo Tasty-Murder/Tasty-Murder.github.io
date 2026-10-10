@@ -1,0 +1,51 @@
+/*
+ * The docs site palette is the same one planned for the HTML report and
+ * TUI: black/white with blue/red/green accents sampled from the original
+ * Regshot icon, re-tinted per theme so every accent clears 4.5:1
+ * contrast against its own background. See guide/reading-the-report.md
+ * for where the numbers come from.
+ */
+
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #0b6aae;
+  --md-primary-fg-color--light: #4a93c9;
+  --md-primary-fg-color--dark: #084e80;
+  --md-primary-bg-color: #ffffff;
+  --md-accent-fg-color: #0b6aae;
+
+  --rs-add: #1f7a34;
+  --rs-del: #b81919;
+  --rs-modi: #0b6aae;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #56b6f8;
+  --md-primary-fg-color--light: #8ed0fb;
+  --md-primary-fg-color--dark: #2e93d9;
+  --md-primary-bg-color: #0b0d10;
+  --md-accent-fg-color: #56b6f8;
+
+  --rs-add: #5dd17a;
+  --rs-del: #ff6b6b;
+  --rs-modi: #56b6f8;
+}
+
+/* Change-category badges, used in reference/change-categories.md */
+.rs-badge {
+  display: inline-block;
+  padding: 0.1em 0.5em;
+  border-radius: 0.25em;
+  font-family: var(--md-code-font);
+  font-size: 0.75em;
+  font-weight: 700;
+  color: #fff;
+}
+.rs-badge--add {
+  background: var(--rs-add);
+}
+.rs-badge--del {
+  background: var(--rs-del);
+}
+.rs-badge--modi {
+  background: var(--rs-modi);
+}
